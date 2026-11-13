@@ -1,8 +1,8 @@
 import { acordaPorra } from './sounds.js'
 
-const FOCUS_TIME = 25
-const SHORT_BREAK_TIME = 5
-const LONG_BREAK_TIME = 15
+const FOCUS_TIME = 25 * 60
+const SHORT_BREAK_TIME = 5 * 60
+const LONG_BREAK_TIME = 15 * 60
 
 const context = {
   1: FOCUS_TIME,
