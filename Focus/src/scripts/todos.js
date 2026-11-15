@@ -243,3 +243,5 @@ function renderAll() {
     todosList.appendChild(element);
   });
 }
+
+loadTasks()
