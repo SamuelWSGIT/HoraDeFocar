@@ -1,0 +1,28 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 30px;
+  border: 1px solid var(--pink);
+  color: var(--ink);
+  background: rgba(255, 43, 214, 0.12);
+  box-shadow: 0 0 24px rgba(255, 43, 214, 0.3);
+  cursor: pointer;
+  font-family: var(--display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  color: var(--void);
+  background: var(--pink);
+}
+
+@media (max-width: 480px) {
+  .button {
+    width: 100%;
+    padding-inline: 14px;
+    font-size: 0.7rem;
+  }
+}

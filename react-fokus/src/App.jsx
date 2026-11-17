@@ -1,5 +1,16 @@
+import { HeaderFokus } from './components/HeaderFokus';
+import { MainContent } from './components/MainContent';
+import { PageLayout } from './components/PageLayout';
+import { SiteFooter } from './components/SiteFooter';
+
 function App() {
-  return <h1>Fokus</h1>;
+  return (
+    <PageLayout>
+      <HeaderFokus />
+      <MainContent />
+      <SiteFooter />
+    </PageLayout>
+  );
 }
 
 export default App;

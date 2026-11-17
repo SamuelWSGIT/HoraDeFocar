@@ -1,0 +1,23 @@
+.icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+
+.add { -webkit-mask-image: url('/icons/add_circle.svg'); mask-image: url('/icons/add_circle.svg'); }
+.check { -webkit-mask-image: url('/icons/check.svg'); mask-image: url('/icons/check.svg'); }
+.close { -webkit-mask-image: url('/icons/close.svg'); mask-image: url('/icons/close.svg'); }
+.delete { -webkit-mask-image: url('/icons/delete_outline.svg'); mask-image: url('/icons/delete_outline.svg'); }
+.edit { -webkit-mask-image: url('/icons/edit.svg'); mask-image: url('/icons/edit.svg'); }
+.more { -webkit-mask-image: url('/icons/more_vert.svg'); mask-image: url('/icons/more_vert.svg'); }
+.pause { -webkit-mask-image: url('/icons/pause.svg'); mask-image: url('/icons/pause.svg'); }
+.play { -webkit-mask-image: url('/icons/play_arrow.svg'); mask-image: url('/icons/play_arrow.svg'); }
+.save { -webkit-mask-image: url('/icons/save.svg'); mask-image: url('/icons/save.svg'); }
+
+.sm { width: 18px; height: 18px; }
+.md { width: 20px; height: 20px; }
+.lg { width: 32px; height: 32px; }

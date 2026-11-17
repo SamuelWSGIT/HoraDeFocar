@@ -1,0 +1,14 @@
+.logo {
+  margin: 0;
+}
+
+.logo img {
+  width: 118px;
+  filter: grayscale(1) brightness(3) drop-shadow(0 0 12px var(--cyan));
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 96px;
+  }
+}

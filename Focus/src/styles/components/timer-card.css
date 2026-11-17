@@ -1,0 +1,147 @@
+.timer-card {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  text-align: center;
+  clip-path: polygon(0 0, 98% 0, 100% 9%, 100% 100%, 2% 100%, 0 91%);
+}
+
+.timer-card::before {
+  position: absolute;
+  top: 0;
+  right: 10%;
+  left: 10%;
+  height: 2px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--pink),
+    var(--cyan),
+    transparent
+  );
+}
+
+.timer-card__tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.timer-card__tab {
+  padding: 10px 18px;
+  border: 1px solid rgba(136, 144, 184, 0.45);
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+}
+
+.timer-card__tab:hover,
+.timer-card__tab--active {
+  border-color: var(--cyan);
+  color: var(--void);
+  background: var(--cyan);
+  box-shadow: 0 0 24px rgba(0, 245, 255, 0.3);
+}
+
+.timer-card__time {
+  display: block;
+  margin: 30px 0 18px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: clamp(4.5rem, 13vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.09em;
+  text-shadow:
+    0 0 8px var(--cyan),
+    3px 0 var(--pink);
+}
+
+.music-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.music-toggle__input {
+  width: 42px;
+  height: 22px;
+  appearance: none;
+  border: 1px solid var(--cyan);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.music-toggle__input::before {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 3px;
+  content: "";
+  background: var(--cyan);
+  transition: transform 0.2s;
+}
+
+.music-toggle__input:checked {
+  border-color: var(--pink);
+}
+
+.music-toggle__input:checked::before {
+  transform: translateX(18px);
+  background: var(--pink);
+}
+
+.timer-card__form {
+  margin-top: 26px;
+}
+
+@media (min-width: 1440px) {
+  .timer-card {
+    max-width: 900px;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 760px) {
+  .timer-card {
+    padding: 22px 14px;
+  }
+
+  .timer-card__tab {
+    flex: 1 1 30%;
+    padding-inline: 8px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-card {
+    padding: 18px 10px;
+  }
+
+  .timer-card__tabs {
+    gap: 6px;
+  }
+
+  .timer-card__tab {
+    flex: 1 1 100%;
+    padding: 9px 7px;
+    font-size: 0.62rem;
+  }
+
+  .timer-card__time {
+    margin: 24px 0 16px;
+    font-size: clamp(3.7rem, 20vw, 5.5rem);
+  }
+}

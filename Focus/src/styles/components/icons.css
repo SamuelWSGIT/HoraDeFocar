@@ -1,0 +1,69 @@
+.icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+
+.icon--add {
+  -webkit-mask-image: url("/icons/add_circle.svg");
+  mask-image: url("/icons/add_circle.svg");
+}
+
+.icon--check {
+  -webkit-mask-image: url("/icons/check.svg");
+  mask-image: url("/icons/check.svg");
+}
+
+.icon--close {
+  -webkit-mask-image: url("/icons/close.svg");
+  mask-image: url("/icons/close.svg");
+}
+
+.icon--delete {
+  -webkit-mask-image: url("/icons/delete_outline.svg");
+  mask-image: url("/icons/delete_outline.svg");
+}
+
+.icon--edit {
+  -webkit-mask-image: url("/icons/edit.svg");
+  mask-image: url("/icons/edit.svg");
+}
+
+.icon--more {
+  -webkit-mask-image: url("/icons/more_vert.svg");
+  mask-image: url("/icons/more_vert.svg");
+}
+
+.icon--play {
+  -webkit-mask-image: url("/icons/play_arrow.svg");
+  mask-image: url("/icons/play_arrow.svg");
+}
+
+.icon--pause {
+  -webkit-mask-image: url("/icons/pause.svg");
+  mask-image: url("/icons/pause.svg");
+}
+
+.icon--save {
+  -webkit-mask-image: url("/icons/save.svg");
+  mask-image: url("/icons/save.svg");
+}
+
+.icon--sm {
+  width: 18px;
+  height: 18px;
+}
+
+.icon--md {
+  width: 20px;
+  height: 20px;
+}
+
+.icon--lg {
+  width: 32px;
+  height: 32px;
+}

@@ -1,0 +1,30 @@
+.menu { position: relative; }
+.trigger { color: var(--pink); cursor: pointer; list-style: none; }
+.trigger::-webkit-details-marker { display: none; }
+.list {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  z-index: 2;
+  min-width: 240px;
+  padding: 12px;
+  margin: 0;
+  border: 1px solid var(--pink);
+  background: var(--panel);
+  list-style: none;
+  box-shadow: 0 0 24px rgba(255, 43, 214, 0.3);
+}
+.item + .item { margin-top: 8px; }
+.button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+.button:hover { color: var(--cyan); background: rgba(0, 245, 255, 0.08); }

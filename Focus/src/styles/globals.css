@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@500;700;800&display=swap");
+
+:root {
+  --void: #050611;
+  --panel: #0c0f24;
+  --ink: #f2f4ff;
+  --muted: #8890b8;
+  --cyan: #00f5ff;
+  --pink: #ff2bd6;
+  --violet: #9c4dff;
+  --lime: #c8ff32;
+  --line: rgba(0, 245, 255, 0.32);
+  --body: "Rajdhani", sans-serif;
+  --mono: "Space Mono", monospace;
+  --display: "Orbitron", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(0, 245, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(255, 43, 214, 0.13),
+      transparent 32rem
+    ),
+    var(--void);
+  background-size:
+    42px 42px,
+    42px 42px,
+    auto,
+    auto;
+  font-family: var(--body);
+  font-size: 18px;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(255, 255, 255, 0.04) 4px
+  );
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  color: var(--void);
+  background: var(--cyan);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+}
