@@ -32,17 +32,9 @@ body {
   background:
     linear-gradient(rgba(0, 245, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 245, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(
-      circle at 15% 0%,
-      rgba(255, 43, 214, 0.13),
-      transparent 32rem
-    ),
+    radial-gradient(circle at 15% 0%, rgba(255, 43, 214, 0.13), transparent 32rem),
     var(--void);
-  background-size:
-    42px 42px,
-    42px 42px,
-    auto,
-    auto;
+  background-size: 42px 42px, 42px 42px, auto, auto;
   font-family: var(--body);
   font-size: 18px;
 }
@@ -54,11 +46,7 @@ body::before {
   pointer-events: none;
   content: "";
   opacity: 0.18;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0 3px,
-    rgba(255, 255, 255, 0.04) 4px
-  );
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.04) 4px);
 }
 
 button,
@@ -66,65 +54,12 @@ textarea {
   font: inherit;
 }
 
-.skip-link {
-  position: absolute;
-  top: -4rem;
-  left: 1rem;
-  z-index: 10;
-  padding: 0.75rem 1rem;
-  color: var(--void);
-  background: var(--cyan);
-}
-
-.skip-link:focus {
-  top: 1rem;
+#root {
+  min-height: 100vh;
 }
 
 @media (max-width: 480px) {
   body {
     font-size: 16px;
-  }
-}
-
-header,
-main,
-footer {
-  width: min(1120px, calc(100% - 48px));
-  margin-inline: auto;
-}
-
-header {
-  padding: 28px 0 12px;
-}
-
-@media (max-width: 760px) {
-  header,
-  main {
-    width: min(100% - 28px, 1120px);
-  }
-}
-
-@media (min-width: 1440px) {
-  header,
-  main {
-    width: min(1440px, calc(100% - 96px));
-  }
-}
-
-@media (min-width: 761px) and (max-width: 1199px) {
-  header,
-  main {
-    width: min(100% - 48px, 1000px);
-  }
-}
-
-@media (max-width: 480px) {
-  header,
-  main {
-    width: calc(100% - 20px);
-  }
-
-  header {
-    padding-top: 18px;
   }
 }

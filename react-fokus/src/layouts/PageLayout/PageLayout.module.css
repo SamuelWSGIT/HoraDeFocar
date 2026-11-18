@@ -1,0 +1,8 @@
+.pageLayout {
+  min-height: 100vh;
+  margin: 0;
+  background: url('/pattern.png'), var(--void);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}

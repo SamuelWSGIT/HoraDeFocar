@@ -1,16 +1,48 @@
+/* Estrutura base do banner */
 .banner {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
-  align-items: center;
-  gap: 46px;
+  --accent-color: var(--cyan);
+  --image-shadow:
+    0 0 24px rgba(0, 245, 255, 0.3),
+    10px 10px 0 rgba(255, 43, 214, 0.18);
+
   min-height: 420px;
   padding: 22px 0 58px;
 }
 
-.title {
+.media {
   position: relative;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--accent-color);
+  box-shadow: var(--image-shadow);
+  clip-path: polygon(0 0, 96% 0, 100% 12%, 100% 100%, 4% 100%, 0 88%);
+}
+
+/* Título sobreposto à imagem */
+.title {
+  position: absolute;
+  inset: 0 auto 0 0;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: min(520px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  padding: 18px 24px;
   margin: 0;
+  border-left: 2px solid var(--accent-color);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 6, 17, 0.78),
+    rgba(5, 6, 17, 0.18),
+    transparent
+  );
   font-family: var(--display);
   font-size: clamp(2rem, 4vw, 4.25rem);
   line-height: 1.12;
@@ -27,41 +59,60 @@
 }
 
 .highlight {
-  color: var(--cyan);
+  color: var(--accent-color);
 }
 
-.image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border: 1px solid var(--cyan);
-  box-shadow:
-    0 0 24px rgba(0, 245, 255, 0.3),
-    10px 10px 0 rgba(255, 43, 214, 0.18);
-  clip-path: polygon(0 0, 96% 0, 100% 12%, 100% 100%, 4% 100%, 0 88%);
+/* Variações de cada modo */
+.mode2 {
+  --accent-color: var(--violet);
+  --image-shadow:
+    0 0 24px rgba(156, 77, 255, 0.38),
+    10px 10px 0 rgba(0, 245, 255, 0.16);
 }
 
+.mode3 {
+  --accent-color: var(--lime);
+  --image-shadow:
+    0 0 24px rgba(0, 245, 255, 0.38),
+    10px 10px 0 rgba(200, 255, 50, 0.12);
+}
+
+.mode3 .image {
+  aspect-ratio: 3 / 1;
+}
+
+.mode3 .highlight {
+  text-shadow:
+    0 0 14px rgba(200, 255, 50, 0.62),
+    3px 0 var(--pink);
+}
+
+/* Ajustes responsivos */
 @media (max-width: 760px) {
   .banner {
-    grid-template-columns: 1fr;
-    gap: 24px;
     min-height: 0;
     padding-bottom: 36px;
-  }
-
-  .title {
-    font-size: clamp(2rem, 11vw, 3.4rem);
   }
 
   .image {
     aspect-ratio: 16 / 10;
   }
+
+  .title {
+    left: 14px;
+    width: calc(100% - 28px);
+    max-width: 78%;
+    padding: 12px 14px;
+    font-size: clamp(1.5rem, 8vw, 3rem);
+  }
+
+  .mode3 .image {
+    aspect-ratio: 16 / 8;
+  }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 3000px) {
   .banner {
-    grid-template-columns: minmax(460px, 0.86fr) minmax(720px, 1.14fr);
-    gap: 72px;
     min-height: 560px;
     padding: 42px 0 88px;
   }
@@ -71,28 +122,20 @@
   }
 }
 
-@media (min-width: 761px) and (max-width: 1199px) {
-  .banner {
-    grid-template-columns: minmax(280px, 0.85fr) minmax(420px, 1.15fr);
-    gap: 32px;
-  }
-
-  .title {
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
-  }
-}
-
 @media (max-width: 480px) {
   .banner {
-    gap: 18px;
     padding: 18px 0 30px;
   }
 
   .title {
-    font-size: clamp(1.75rem, 10vw, 2.6rem);
+    left: 10px;
+    width: calc(100% - 20px);
+    max-width: 86%;
+    padding: 10px 12px;
+    font-size: clamp(1.25rem, 7.5vw, 2rem);
   }
 
-  .image {
-    aspect-ratio: 16 / 10;
+  .mode3 .image {
+    aspect-ratio: 16 / 9;
   }
 }

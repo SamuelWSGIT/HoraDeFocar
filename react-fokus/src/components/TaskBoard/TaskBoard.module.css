@@ -30,6 +30,9 @@
   text-transform: uppercase;
 }
 .addButton:hover { color: var(--void); background: var(--violet); }
+.status,
+.error { color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+.error { color: var(--pink); }
 
 @media (min-width: 1440px) { .board { max-width: 900px; } }
 @media (max-width: 480px) {

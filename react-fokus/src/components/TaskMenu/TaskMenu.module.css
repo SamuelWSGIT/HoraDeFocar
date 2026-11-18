@@ -1,4 +1,5 @@
 .menu { position: relative; }
+.form { margin: 0; }
 .trigger { color: var(--pink); cursor: pointer; list-style: none; }
 .trigger::-webkit-details-marker { display: none; }
 .list {
