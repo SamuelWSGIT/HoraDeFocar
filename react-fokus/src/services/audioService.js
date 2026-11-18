@@ -1,6 +1,9 @@
 let musicAudio;
 let alarmAudio;
-let alarmUnlocked = false;
+let alarmContext;
+let alarmBuffer;
+let alarmBufferPromise;
+let alarmSource;
 
 function createAudio(source) {
   if (typeof Audio === 'undefined') return null;
@@ -23,6 +26,38 @@ function getAlarmAudio() {
   return alarmAudio;
 }
 
+function getAlarmContext() {
+  if (typeof window === 'undefined') return null;
+
+  const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextConstructor) return null;
+
+  alarmContext ??= new AudioContextConstructor();
+  return alarmContext;
+}
+
+function loadAlarmBuffer(context) {
+  if (alarmBuffer) return Promise.resolve(alarmBuffer);
+  if (alarmBufferPromise) return alarmBufferPromise;
+
+  alarmBufferPromise = fetch('/sounds/ta-da-2.mp3')
+    .then((response) => {
+      if (!response.ok) throw new Error('Não foi possível carregar o alarme.');
+      return response.arrayBuffer();
+    })
+    .then((data) => context.decodeAudioData(data))
+    .then((buffer) => {
+      alarmBuffer = buffer;
+      return buffer;
+    })
+    .catch((error) => {
+      alarmBufferPromise = undefined;
+      throw error;
+    });
+
+  return alarmBufferPromise;
+}
+
 export async function setMusicEnabled(enabled) {
   const musicAudio = getMusicAudio();
   if (!musicAudio) return;
@@ -43,21 +78,32 @@ export function stopMusic() {
 }
 
 export async function prepareAlarm() {
+  const context = getAlarmContext();
+
+  if (context) {
+    try {
+      // resume() precisa ser chamado durante a interação do usuário. Depois
+      // disso, o alarme pode ser disparado pelo timer sem ser bloqueado pelo iOS.
+      await context.resume();
+      void loadAlarmBuffer(context);
+      return;
+    } catch {
+      // Continua com o fallback de HTMLAudioElement abaixo.
+    }
+  }
+
   const audio = getAlarmAudio();
-  if (!audio || alarmUnlocked) return;
+  if (!audio) return;
 
   const previousMuted = audio.muted;
   const previousVolume = audio.volume;
 
   try {
-    // O Safari do iPhone exige uma interação do usuário para liberar o áudio.
-    // A preparação ocorre no clique de início, sem emitir som para o usuário.
     audio.muted = true;
     audio.volume = 0;
     await audio.play();
     audio.pause();
     audio.currentTime = 0;
-    alarmUnlocked = true;
   } catch {
     // O aviso será tentado novamente ao finalizar o timer.
   } finally {
@@ -67,10 +113,28 @@ export async function prepareAlarm() {
 }
 
 export async function playAlarm() {
-  const audio = getAlarmAudio();
-
   // A trilha precisa parar mesmo se o Safari bloquear o alarme.
   stopMusic();
+
+  const context = getAlarmContext();
+
+  if (context) {
+    try {
+      if (context.state === 'suspended') await context.resume();
+
+      const buffer = await loadAlarmBuffer(context);
+      alarmSource?.stop();
+      alarmSource = context.createBufferSource();
+      alarmSource.buffer = buffer;
+      alarmSource.connect(context.destination);
+      alarmSource.start(0);
+      return true;
+    } catch {
+      // Usa o elemento de áudio como fallback em navegadores sem Web Audio.
+    }
+  }
+
+  const audio = getAlarmAudio();
   if (!audio) return false;
 
   audio.currentTime = 0;
