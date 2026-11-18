@@ -10,7 +10,7 @@ O projeto foi desenvolvido para demonstrar uma aplicação React moderna, com co
 
 Após publicar na Vercel, substitua o endereço abaixo pelo domínio definitivo:
 
-**Demo:** `https://seu-projeto.vercel.app`
+**Demo:** `[https://seu-projeto.vercel.app](https://hora-de-focar.vercel.app/)`
 
 ## Funcionalidades
 
