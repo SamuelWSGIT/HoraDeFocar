@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getPomodoroMode } from '../constants/pomodoroModes';
-import { playAlarm } from '../services/audioService';
+import { playAlarm, prepareAlarm } from '../services/audioService';
 import { formatTimer } from '../utils/time';
 
 export function useTimer(mode, durationInSeconds) {
@@ -43,7 +43,7 @@ export function useTimer(mode, durationInSeconds) {
         remainingSecondsRef.current = resetSeconds;
         setRemainingSeconds(resetSeconds);
         setIsRunning(false);
-        playAlarm().catch(() => undefined);
+        void playAlarm();
         return;
       }
 
@@ -55,8 +55,14 @@ export function useTimer(mode, durationInSeconds) {
   }, [isRunning]);
 
   const toggleTimer = useCallback(() => {
+    if (!isRunning) {
+      // Libera o elemento de áudio durante o clique do usuário para que o
+      // Safari do iPhone possa reproduzir o alarme quando o timer terminar.
+      void prepareAlarm();
+    }
+
     setIsRunning((running) => !running);
-  }, []);
+  }, [isRunning]);
 
   return {
     formattedTime: formatTimer(remainingSeconds),

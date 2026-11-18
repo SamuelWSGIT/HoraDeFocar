@@ -1,10 +1,14 @@
 let musicAudio;
 let alarmAudio;
+let alarmUnlocked = false;
 
 function createAudio(source) {
   if (typeof Audio === 'undefined') return null;
 
-  return new Audio(source);
+  const audio = new Audio(source);
+  audio.preload = 'auto';
+
+  return audio;
 }
 
 function getMusicAudio() {
@@ -38,12 +42,43 @@ export function stopMusic() {
   musicAudio.currentTime = 0;
 }
 
+export async function prepareAlarm() {
+  const audio = getAlarmAudio();
+  if (!audio || alarmUnlocked) return;
+
+  const previousMuted = audio.muted;
+  const previousVolume = audio.volume;
+
+  try {
+    // O Safari do iPhone exige uma interação do usuário para liberar o áudio.
+    // A preparação ocorre no clique de início, sem emitir som para o usuário.
+    audio.muted = true;
+    audio.volume = 0;
+    await audio.play();
+    audio.pause();
+    audio.currentTime = 0;
+    alarmUnlocked = true;
+  } catch {
+    // O aviso será tentado novamente ao finalizar o timer.
+  } finally {
+    audio.muted = previousMuted;
+    audio.volume = previousVolume;
+  }
+}
+
 export async function playAlarm() {
   const audio = getAlarmAudio();
-  const musicAudio = getMusicAudio();
-  if (!audio) return;
+
+  // A trilha precisa parar mesmo se o Safari bloquear o alarme.
+  stopMusic();
+  if (!audio) return false;
 
   audio.currentTime = 0;
-  await audio.play();
-  musicAudio?.pause();
+
+  try {
+    await audio.play();
+    return true;
+  } catch {
+    return false;
+  }
 }
