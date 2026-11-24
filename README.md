@@ -4,6 +4,8 @@ Projeto de portfólio desenvolvido por Samuel Almeida. A aplicação utiliza a t
 
 ## Demonstração
 
+![Tela inicial do NEON//FOCUS com cronômetro Pomodoro e missões](docs/demo-home.jpg)
+
 **[Acessar a aplicação na Vercel](https://hora-de-focar.vercel.app/)**
 
 1. Na página inicial, escolha um dos três modos: **Modo ataque** (foco), **Recarga** (pausa curta) ou **Reboot** (pausa longa).
